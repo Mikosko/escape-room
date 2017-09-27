@@ -17,7 +17,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Layout>
-        <Route path={route.MAIN} component={Main} />
+        <Route exact path={route.MAIN} component={Main} />
         <Route path={route.TEST} component={Test} />
       </Layout>
     </ConnectedRouter>
