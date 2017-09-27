@@ -1,12 +1,10 @@
 var webpack = require('webpack');
 var path = require('path');
 
-// variables
 var isProduction = process.argv.indexOf('-p') >= 0;
 var sourcePath = path.join(__dirname, './src');
 var outPath = path.join(__dirname, './dist');
 
-// plugins
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -19,6 +17,8 @@ module.exports = {
       'react-dom',
       'react-redux',
       'react-router',
+      'react-router-dom',
+      'react-router-redux',
       'redux'
     ]
   },
@@ -30,13 +30,10 @@ module.exports = {
   target: 'web',
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
-    // Fix webpack's default behavior to not load packages with jsnext:main module
-    // https://github.com/Microsoft/TypeScript/issues/11677
     mainFields: ['main']
   },
   module: {
     loaders: [
-      // .ts, .tsx
       {
         test: /\.tsx?$/,
         use: isProduction
@@ -46,9 +43,8 @@ module.exports = {
             'awesome-typescript-loader'
           ]
       },
-      // css
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -57,7 +53,7 @@ module.exports = {
               query: {
                 modules: true,
                 sourceMap: !isProduction,
-                importLoaders: 1,
+                importLoaders: 2,
                 localIdentName: '[local]__[hash:base64:5]'
               }
             },
@@ -73,11 +69,16 @@ module.exports = {
                   require('postcss-browser-reporter')({ disabled: isProduction }),
                 ]
               }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: isProduction,
+              }
             }
           ]
         })
       },
-      // static assets
       { test: /\.html$/, use: 'html-loader' },
       { test: /\.png$/, use: 'url-loader?limit=10000' },
       { test: /\.jpg$/, use: 'file-loader' },
@@ -106,8 +107,6 @@ module.exports = {
     },
   },
   node: {
-    // workaround for webpack-dev-server issue
-    // https://github.com/webpack/webpack-dev-server/issues/60#issuecomment-103411179
     fs: 'empty',
     net: 'empty'
   }

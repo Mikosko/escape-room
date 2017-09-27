@@ -6,6 +6,11 @@ declare module '*.css' {
   export = styles;
 }
 
+declare module '*.scss' {
+  const styles: any;
+  export = styles;
+}
+
 // for redux devtools extension
 declare interface Window {
   devToolsExtension?(): (args?: any) => any;

@@ -1,5 +1,1 @@
-import logger from './logger';
-
-export {
-  logger
-};
+export { default as logger } from './logger';
