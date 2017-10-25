@@ -3,7 +3,7 @@ import withRouter from 'react-router-dom/withRouter';
 import './style.scss';
 
 @withRouter
-export default class Layout extends React.PureComponent<{}, {}> {
+export class Layout extends React.PureComponent<{}, {}> {
   render() {
     return (
       <div>
