@@ -13,11 +13,11 @@ export interface Fetch {
 
 export default function fetcher(globalConfig?: GlobalConfig) {
   return ({ dispatch, getState }) => (next) => (action: FetcherAction) => {
-    if (action.fetch) {
-      const { onSuccessType, onErrorType } = action.fetch;
-      fetch(`${(globalConfig && globalConfig.rootUrl || action.fetch.options && action.fetch.options.rootUrl) + action.fetch.url + action.fetch.params}`, {
+    if (action.payload && action.payload.fetch) {
+      const { onSuccessType, onErrorType, options, url, params } = action.payload.fetch;
+      fetch(`${(globalConfig && globalConfig.rootUrl || options && options.rootUrl) + url + params}`, {
         ...globalConfig,
-        ...action.fetch.options,
+        ...options,
       }).then((response) => {
         if (response.ok) {
           return response.json().then((responseJSON) => {

@@ -6,7 +6,7 @@ import rootReducer from '../reducers';
 
 export const history = createHistory();
 const router = routerMiddleware(history);
-const fetcher = createFetcher({ rootUrl: 'http://localhost:3004/' });
+const fetcher = createFetcher({ rootUrl: 'http://localhost:8000/' });
 export function configureStore(initialState?: AppState): Store<AppState> {
   const create = window.devToolsExtension
     ? window.devToolsExtension()(createStore)
