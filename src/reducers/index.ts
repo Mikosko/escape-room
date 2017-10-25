@@ -1,10 +1,9 @@
-import { routerReducer, RouterState } from 'react-router-redux';
+import { routerReducer } from 'react-router-redux';
 import { combineReducers } from 'redux';
 
-export interface RootState {
-  router: RouterState;
-}
+import { reducer as Posts } from './Posts';
 
-export default combineReducers<RootState>({
+export default combineReducers<AppState>({
   router: routerReducer,
+  posts: Posts,
 });

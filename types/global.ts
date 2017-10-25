@@ -1,6 +1,3 @@
-/** Global definitions for developement **/
-
-// for style loader
 declare module '*.css' {
   const styles: any;
   export = styles;
@@ -11,7 +8,13 @@ declare module '*.scss' {
   export = styles;
 }
 
-// for redux devtools extension
 declare interface Window {
   devToolsExtension?(): (args?: any) => any;
+}
+
+declare interface ReducerState<S> {
+  error: boolean;
+  wasLoaded: boolean;
+  isLoading: boolean;
+  data: S;
 }
