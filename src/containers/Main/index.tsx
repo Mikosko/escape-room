@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { getPosts, GetPostsAction } from '../../actions/Posts';
+import { SidePanel } from '../../components';
 import * as route from '../../constants/routes';
 
 export namespace Main {
@@ -30,12 +31,14 @@ export default class Main extends React.Component<Main.Props, Main.State> {
   componentDidMount() {
     const { getPosts } = this.props as Main.Actions;
     getPosts();
-    getPosts(1);
   }
 
   render() {
     return (
       <div>
+        <SidePanel>
+          Hellos
+        </SidePanel>
         <h1>Hello world</h1>
         <hr />
         <Link to={route.TEST}>Link to Test</Link>

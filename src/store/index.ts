@@ -2,11 +2,17 @@ import createHistory from 'history/createBrowserHistory';
 import { routerMiddleware } from 'react-router-redux';
 import { applyMiddleware, createStore, Store } from 'redux';
 import { createFetcher, logger } from '../middleware';
+import { GlobalConfig } from '../middleware/fetcher';
 import rootReducer from '../reducers';
+
+const configureFetch: GlobalConfig = {
+  rootUrl: 'http://192.168.1.171/api/',
+  mode: 'no-cors',
+};
 
 export const history = createHistory();
 const router = routerMiddleware(history);
-const fetcher = createFetcher({ rootUrl: 'http://localhost:8000/' });
+const fetcher = createFetcher(configureFetch);
 export function configureStore(initialState?: AppState): Store<AppState> {
   const create = window.devToolsExtension
     ? window.devToolsExtension()(createStore)

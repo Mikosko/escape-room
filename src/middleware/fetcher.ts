@@ -19,7 +19,7 @@ export default function fetcher(globalConfig?: GlobalConfig) {
         ...globalConfig,
         ...options,
       }).then((response) => {
-        if (response.ok) {
+        if (!response.ok) {
           return response.json().then((responseJSON) => {
             return dispatch({ type: onSuccessType, error: false, payload: responseJSON });
           });
