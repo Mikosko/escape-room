@@ -6,8 +6,7 @@ import { GlobalConfig } from '../middleware/fetcher';
 import rootReducer from '../reducers';
 
 const configureFetch: GlobalConfig = {
-  rootUrl: 'http://192.168.1.171/api/',
-  mode: 'no-cors',
+  rootUrl: 'http://localhost:8000/',
 };
 
 export const history = createHistory();

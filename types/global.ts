@@ -16,5 +16,5 @@ declare interface ReducerState<S> {
   error: boolean;
   wasLoaded: boolean;
   isLoading: boolean;
-  data: S;
+  data: Partial<S>;
 }

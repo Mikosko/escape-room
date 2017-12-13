@@ -10,7 +10,6 @@ export class SidePanel extends React.PureComponent<SidePanel.Props, SidePanel.St
     return (
       <div>
         {this.props.children}
-        Ahoj
       </div>
     );
   }
